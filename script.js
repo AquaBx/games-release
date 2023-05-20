@@ -25,7 +25,7 @@ function table_list(liste){
         var time = liste[item]["time"].split(":")
 
         var year = parseInt(date[0])
-        var month = parseInt(date[1])
+        var month = parseInt(date[1])-1
         var day = parseInt(date[2])
         var hour = parseInt(time[0])
         var minute = parseInt(time[1])
@@ -33,7 +33,7 @@ function table_list(liste){
         var date = new Date(Date.UTC(year,month,day,hour,minute,0))
 
         td0.innerText = liste[item]["name"]
-        td1.innerText = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
+        td1.innerText = date.getDate() + "/" + (parseInt(date.getMonth())+1).toString() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
         a.innerText = "Link to the countdown"
         a.href = "?q="+item
         td2.appendChild(a)
@@ -91,7 +91,7 @@ function count(this_time,game){
 
 if(myParam && games[myParam]){
     document.querySelector("#name").innerText = games[myParam]["name"]
-    document.querySelector("#thumbnail").src = games[myParam]["thumbnail"]
+    document.querySelector("#thumbnail").src = games[myParam]["url"]
     document.querySelector("#quer").style="display: block;"
     setInterval(countdown, 1000);
 }
